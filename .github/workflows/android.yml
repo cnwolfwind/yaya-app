@@ -39,21 +39,8 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Copy web assets to Android
-        run: |
-          # Capacitor sync = copy dist to android + update config
-          cp -r dist/* android/app/src/main/assets/public/ 2>/dev/null || (mkdir -p android/app/src/main/assets/public && cp -r dist/* android/app/src/main/assets/public/)
-          # Update capacitor.config.json
-          cat > android/app/src/main/assets/capacitor.config.json << 'EOF'
-          {
-            "appId": "com.yaya.app",
-            "appName": "Yaya",
-            "webDir": "assets",
-            "server": {
-              "androidScheme": "https"
-            }
-          }
-          EOF
+      - name: Sync Capacitor Android
+        run: npx cap sync android 2>&1
 
       - name: Build debug APK
         run: |
