@@ -39,25 +39,42 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Sync Capacitor
-        run: npx cap sync android
+      - name: Copy web assets to Android
+        run: |
+          # Capacitor sync = copy dist to android + update config
+          cp -r dist/* android/app/src/main/assets/public/ 2>/dev/null || (mkdir -p android/app/src/main/assets/public && cp -r dist/* android/app/src/main/assets/public/)
+          # Update capacitor.config.json
+          cat > android/app/src/main/assets/capacitor.config.json << 'EOF'
+          {
+            "appId": "com.yaya.app",
+            "appName": "Yaya",
+            "webDir": "assets",
+            "server": {
+              "androidScheme": "https"
+            }
+          }
+          EOF
 
       - name: Build debug APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon 2>&1
+          ./gradlew assembleDebug --no-daemon 2>&1 | tail -30
+          APK=$(find . -name "*.apk" -type f | head -1)
+          echo "APK=$APK"
+          ls -lh "$APK" || echo "NO APK FOUND"
 
       - name: Find APK
         id: find-apk
         run: |
           APK=$(find android -name "*.apk" -type f | head -1)
           echo "apk_path=$APK" >> $GITHUB_OUTPUT
-          echo "APK found: $APK"
-          ls -lh "$APK"
+          echo "Found APK: $APK"
+          ls -lh "$APK" || echo "NO APK"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: yaya-apk
           path: ${{ steps.find-apk.outputs.apk_path }}
@@ -75,7 +92,6 @@ jobs:
           name: yaya-apk
 
       - name: Get APK info
-        id: info
         run: |
           APK=$(find . -name "*.apk" | head -1)
           cp "$APK" "yaya-app.apk"
