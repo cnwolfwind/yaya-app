@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Setup NPM cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
 
@@ -39,10 +45,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build APK
+      - name: Build debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon 2>&1 | tail -20
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon 2>&1
 
       - name: Find APK
         id: find-apk
@@ -74,9 +81,8 @@ jobs:
         id: info
         run: |
           APK=$(find . -name "*.apk" | head -1)
-          echo "filename=app-release.apk" >> $GITHUB_OUTPUT
-          ls -lh "$APK"
-          cp "$APK" "app-release.apk"
+          cp "$APK" "yaya-app.apk"
+          ls -lh yaya-app.apk
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -94,7 +100,7 @@ jobs:
 
             ### 安装
             直接下载 APK 文件到手机安装即可。
-          files: app-release.apk
+          files: yaya-app.apk
           draft: false
           prerelease: false
         env:
