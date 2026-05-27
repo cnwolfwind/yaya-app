@@ -1,5 +1,11 @@
 {
   "appId": "com.yaya.app",
   "appName": "Yaya",
-  "webDir": "dist"
+  "webDir": "dist",
+  "version": "1.0.10",
+  "plugins": {
+    "App": {
+      "updateUrl": "http://121.196.229.11/yaya/version.json"
+    }
+  }
 }

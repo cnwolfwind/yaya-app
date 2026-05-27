@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function HomePage({ onNavigate, installPrompt, onInstall }) {
+export default function HomePage({ onNavigate, installPrompt, onInstall, version }) {
   return (
     <div className="content" style={{ padding: 0 }}>
       {/* Header */}
@@ -9,7 +9,7 @@ export default function HomePage({ onNavigate, installPrompt, onInstall }) {
           <img src="/icon.png" alt="yaya" style={{ width: 40, height: 40, borderRadius: 12, marginRight: 12 }} onError={e => e.target.style.display='none'} />
           <div>
             <div style={{ fontSize: 20, fontWeight: 600 }}>雅雅</div>
-            <div style={{ fontSize: 11, color: 'var(--brown)', marginTop: 1 }}>Yaya · 个人工具箱</div>
+            <div style={{ fontSize: 11, color: 'var(--brown)', marginTop: 1 }}>Yaya · 个人工具箱 · v{version || '1.0.0'}</div>
           </div>
         </div>
       </div>

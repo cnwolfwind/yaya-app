@@ -386,3 +386,26 @@ html, body, #root {
   font-weight: 600;
   cursor: pointer;
 }
+/* 自动更新 Banner */
+.update-banner {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+}
+.update-banner span { flex: 1; }
+.update-banner button {
+  background: white;
+  color: #2E7D32;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+}

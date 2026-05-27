@@ -1,0 +1,6 @@
+{
+  "version": "1.0.10",
+  "build": 11,
+  "url": "http://121.196.229.11/yaya/yaya.apk",
+  "releaseNotes": "全面改用XMLHttpRequest+HTTP，修复华为鸿蒙WebView fetch拦截问题"
+}
