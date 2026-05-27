@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-const APP_VERSION = '2.0.0'
-const APP_BUILD = 13
+const APP_VERSION = '2.0.1'
+const APP_BUILD = 14
 const UPDATE_URL = 'http://121.196.229.11/yaya/version.json'
 const APK_URL = 'http://121.196.229.11/yaya/yaya.apk'
 
-export default function SettingsPage({ onBack }) {
+export default function SettingsPage({ onNavigate }) {
   const [checking, setChecking] = useState(false)
   const [updateAvail, setUpdateAvail] = useState(null)
   const [toast, setToast] = useState(null)
@@ -43,7 +43,7 @@ export default function SettingsPage({ onBack }) {
   return (
     <div className="app">
       <div className="top-bar">
-        <button className="back-btn" onClick={onBack}>←</button>
+        <button className="back-btn" onClick={() => onNavigate('home')}>←</button>
         <h2>设置</h2>
       </div>
       <div className="app-body">
@@ -120,8 +120,8 @@ export default function SettingsPage({ onBack }) {
 
       {/* 底部导航 */}
       <div className="bottom-nav">
-        <button className="nav-item" onClick={() => onBack()}>
-          <span className="nav-icon">🏠</span> 返回首页
+        <button style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '6px 16px', color: 'var(--text-light)', fontSize: 11 }} onClick={() => onNavigate('home')}>
+          <span style={{ fontSize: 22 }}>🏠</span>返回首页
         </button>
       </div>
 

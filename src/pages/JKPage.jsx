@@ -63,7 +63,7 @@ export default function JKPage({ onBack }) {
   return (
     <div className="app">
       <div className="top-bar">
-        <button className="back-btn" onClick={onBack}>←</button>
+        <button className="back-btn" onClick={() => onNavigate('home')}>←</button>
         <h2>JK 概率</h2>
         <span style={{ marginLeft: 'auto', fontSize: 13, color: 'var(--text-light)' }}>{data.length} 人已填</span>
       </div>
@@ -137,9 +137,9 @@ export default function JKPage({ onBack }) {
         )}
       </div>
 
-      <div className="bottom-nav">
-        <button className="nav-item" onClick={onBack}>
-          <span className="nav-icon">🏠</span> 返回首页
+      <div className="bottom-nav" style={{ position: 'sticky', bottom: 0, zIndex: 100, background: 'var(--card)', borderTop: '1.5px solid var(--border)', display: 'flex', justifyContent: 'space-around', padding: '6px 0 calc(6px + env(safe-area-inset-bottom))' }}>
+        <button style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '6px 16px', color: 'var(--text-light)', fontSize: 11 }} onClick={() => onNavigate('home')}>
+          <span style={{ fontSize: 22 }}>🏠</span>返回首页
         </button>
       </div>
 
