@@ -1,8 +1,8 @@
 {
   "appId": "com.yaya.app",
-  "appName": "Yaya",
+  "appName": "鸭鸭",
   "webDir": "dist",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "plugins": {
     "CapacitorHttp": {
       "enabled": true

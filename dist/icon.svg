@@ -1,33 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <!-- Background circle -->
-  <circle cx="100" cy="100" r="96" fill="#FDFAF6" stroke="#E8DED3" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="240" fill="#F5EDE3"/>
   
-  <!-- Body - cream colored rounded dragon -->
-  <ellipse cx="100" cy="115" rx="50" ry="45" fill="#F5EFE7"/>
+  <!-- 身体 - 奶油米白 -->
+  <ellipse cx="256" cy="340" rx="110" ry="100" fill="#FDF5E6" stroke="#4A3728" stroke-width="10"/>
   
-  <!-- Head -->
-  <circle cx="100" cy="75" r="40" fill="#F5EFE7"/>
+  <!-- 头 - 圆润大脑袋 -->
+  <ellipse cx="256" cy="220" rx="120" ry="105" fill="#FDF5E6" stroke="#4A3728" stroke-width="10"/>
   
-  <!-- Horns -->
-  <ellipse cx="75" cy="42" rx="8" ry="14" fill="#E8DED3" transform="rotate(-20 75 42)"/>
-  <ellipse cx="125" cy="42" rx="8" ry="14" fill="#E8DED3" transform="rotate(20 125 42)"/>
+  <!-- 左角 (奶茶棕) -->
+  <path d="M220 128 Q215 100 195 90" stroke="#4A3728" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="195" cy="88" rx="18" ry="12" fill="#B8956A" stroke="#4A3728" stroke-width="8" transform="rotate(-15,195,88)"/>
   
-  <!-- Eyes -->
-  <circle cx="85" cy="70" r="8" fill="#3D3A36"/>
-  <circle cx="115" cy="70" r="8" fill="#3D3A36"/>
-  <circle cx="87" cy="68" r="3" fill="#fff"/>
-  <circle cx="117" cy="68" r="3" fill="#fff"/>
+  <!-- 中角 -->
+  <path d="M256 125 L256 80" stroke="#4A3728" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="256" cy="78" rx="18" ry="14" fill="#D4A574" stroke="#4A3728" stroke-width="8"/>
   
-  <!-- Smile -->
-  <path d="M 90 85 Q 100 92 110 85" fill="none" stroke="#C4A882" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 右角 -->
+  <path d="M292 128 Q305 100 317 90" stroke="#4A3728" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="317" cy="88" rx="18" ry="12" fill="#B8956A" stroke="#4A3728" stroke-width="8" transform="rotate(15,317,88)"/>
   
-  <!-- Wings (tiny) -->
-  <ellipse cx="55" cy="105" rx="12" ry="8" fill="#E8DED3" transform="rotate(-30 55 105)"/>
-  <ellipse cx="145" cy="105" rx="12" ry="8" fill="#E8DED3" transform="rotate(30 145 105)"/>
+  <!-- 背鳍 (锯齿三片) -->
+  <path d="M310 155 L330 125 L345 140 L355 115 L365 130 L375 108" stroke="#4A3728" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M310 155 L330 125 L345 140 L355 115 L365 130 L375 108 L370 155" fill="#D4A574" stroke="none" opacity="0.5"/>
   
-  <!-- Tail -->
-  <path d="M 130 140 Q 150 145 145 160" fill="none" stroke="#E8DED3" stroke-width="10" stroke-linecap="round"/>
+  <!-- 左眼 -->
+  <ellipse cx="218" cy="200" rx="22" ry="28" fill="#4A3728"/>
+  <ellipse cx="226" cy="192" rx="8" ry="10" fill="white" transform="rotate(-10,226,192)"/>
   
-  <!-- Text label -->
-  <text x="100" y="182" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" fill="#3D3A36">Yaya</text>
+  <!-- 右眼 -->
+  <ellipse cx="294" cy="200" rx="22" ry="28" fill="#4A3728"/>
+  <ellipse cx="302" cy="192" rx="8" ry="10" fill="white" transform="rotate(-10,302,192)"/>
+  
+  <!-- 腮红 -->
+  <ellipse cx="195" cy="235" rx="18" ry="12" fill="#E8B4B8" opacity="0.5"/>
+  <ellipse cx="317" cy="235" rx="18" ry="12" fill="#E8B4B8" opacity="0.5"/>
+  
+  <!-- 小翅膀 -->
+  <path d="M155 270 Q130 250 120 230 Q140 240 155 255" fill="#FDF5E6" stroke="#4A3728" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M357 270 Q382 250 392 230 Q372 240 357 255" fill="#FDF5E6" stroke="#4A3728" stroke-width="8" stroke-linejoin="round"/>
+  
+  <!-- 短粗尾巴 (右侧) -->
+  <path d="M355 360 Q390 355 400 340 Q410 330 405 320" stroke="#4A3728" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="405" cy="318" rx="15" ry="12" fill="#B8956A" stroke="#4A3728" stroke-width="8" transform="rotate(30,405,318)"/>
+  
+  <!-- 肚子 -->
+  <ellipse cx="256" cy="360" rx="70" ry="55" fill="#FFF9EF" stroke="#4A3728" stroke-width="6" stroke-dasharray="0"/>
 </svg>

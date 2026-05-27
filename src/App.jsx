@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import JKPage from './pages/JKPage.jsx'
-import IntelPage from './pages/IntelPage.jsx'
-import HomePage from './pages/HomePage.jsx'
+import React, { useState, useCallback, useEffect } from 'react'
 
-const APP_VERSION = '1.0.11'
+import HomePage from './pages/HomePage'
+import JKPage from './pages/JKPage'
+import IntelPage from './pages/IntelPage'
+import SettingsPage from './pages/SettingsPage'
+
+const APP_VERSION = '2.0.0'
 const UPDATE_URL = 'http://121.196.229.11/yaya/version.json'
 const APK_URL = 'http://121.196.229.11/yaya/yaya.apk'
 
 export default function App() {
   const [page, setPage] = useState('home')
-  const [installPrompt, setInstallPrompt] = useState(null)
-  const [updateInfo, setUpdateInfo] = useState(null)
+  const [prev, setPrev] = useState('home')
   const [checking, setChecking] = useState(false)
+  const [updateInfo, setUpdateInfo] = useState(null)
+  const [toast, setToast] = useState(null)
 
-  useEffect(() => {
-    // PWA install prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault()
-      setInstallPrompt(e)
-    })
+  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2000) }
 
-    // 检查更新
-    checkForUpdate()
-  }, [])
+  const navigate = useCallback((p) => { setPrev(page); setPage(p) }, [page])
 
   const checkForUpdate = () => {
     setChecking(true)
@@ -50,45 +46,35 @@ export default function App() {
     xhr.send()
   }
 
-  const handleInstallApp = () => {
-    if (installPrompt) {
-      installPrompt.prompt()
-      installPrompt.userChoice.then(() => setInstallPrompt(null))
-    }
-  }
-
-  const handleUpdate = () => {
-    // 在 Android 上打开下载链接，用户下载后手动安装
-    window.open(APK_URL, '_blank')
-  }
-
-  const renderPage = () => {
-    if (page === 'jk') return <JKPage onBack={() => setPage('home')} />
-    if (page === 'intel') return <IntelPage onBack={() => setPage('home')} />
-    return <HomePage onNavigate={setPage} installPrompt={installPrompt} onInstall={handleInstallApp} version={APP_VERSION} />
-  }
+  useEffect(() => { checkForUpdate() }, [])
 
   return (
-    <div className="app">
-      {/* 更新提示 Banner */}
+    <>
+      {page === 'home' && <HomePage onNavigate={navigate} />}
+      {page === 'jk' && <JKPage onBack={() => setPage(prev)} />}
+      {page === 'intel' && <IntelPage onBack={() => setPage(prev)} />}
+      {page === 'settings' && <SettingsPage onBack={() => setPage(prev)} />}
+
       {updateInfo && (
-        <div className="update-banner">
-          <span>发现新版本 v{updateInfo.version}：{updateInfo.releaseNotes || '修复问题'}</span>
-          <button onClick={handleUpdate}>立即更新</button>
+        <div style={{
+          position:'fixed',bottom:20,left:16,right:16,
+          background:'var(--cocoa)',color:'white',
+          borderRadius:16,padding:'14px 20px',
+          display:'flex',alignItems:'center',justifyContent:'space-between',
+          zIndex:200,boxShadow:'0 4px 20px rgba(74,55,40,0.3)'
+        }}>
+          <div>
+            <b>新版本 {updateInfo.version}</b>
+            <div style={{fontSize:12,opacity:0.8,marginTop:2}}>{updateInfo.releaseNotes || ''}</div>
+          </div>
+          <button onClick={() => window.open(APK_URL, '_blank')} style={{
+            background:'white',color:'var(--cocoa)',border:'none',
+            borderRadius:10,padding:'8px 16px',fontSize:13,fontWeight:600,cursor:'pointer'
+          }}>更新</button>
         </div>
       )}
 
-      {/* PWA 安装提示 */}
-      {installPrompt && !updateInfo && (
-        <div className="install-banner">
-          <span>安装雅雅到桌面</span>
-          <button className="install-btn" onClick={handleInstallApp}>安装</button>
-        </div>
-      )}
-
-      {renderPage()}
-    </div>
+      {toast && <div className="toast">{toast}</div>}
+    </>
   )
 }
-
-export { APP_VERSION }

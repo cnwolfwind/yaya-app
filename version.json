@@ -1,6 +1,6 @@
 {
-  "version": "1.0.11",
-  "build": 12,
+  "version": "2.0.0",
+  "build": 13,
   "url": "http://121.196.229.11/yaya/yaya.apk",
-  "releaseNotes": "启用CapacitorHttp原生桥接，绕过华为鸿蒙WebView网络拦截"
+  "releaseNotes": "鸭鸭v2.0 全新设计——首页改为个人仪表盘、新增设置页、鸭鸭VI主题、吉祥物小龙、去掉调试模块"
 }
