@@ -3,7 +3,7 @@ import JKPage from './pages/JKPage.jsx'
 import IntelPage from './pages/IntelPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 
-const APP_VERSION = '1.0.10'
+const APP_VERSION = '1.0.11'
 const UPDATE_URL = 'http://121.196.229.11/yaya/version.json'
 const APK_URL = 'http://121.196.229.11/yaya/yaya.apk'
 

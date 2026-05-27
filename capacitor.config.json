@@ -2,8 +2,11 @@
   "appId": "com.yaya.app",
   "appName": "Yaya",
   "webDir": "dist",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
     "App": {
       "updateUrl": "http://121.196.229.11/yaya/version.json"
     }
