@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Browser } from '@capacitor/browser'
 
-const API_BASE = 'http://121.196.229.11/intelligence-api/api/extract'
+const API_BASE = 'http://121.196.229.11:8080/intelligence-api/api/extract'
 
 export default function ArticlePage({ url, title, source, onBack }) {
   const [loading, setLoading] = useState(true)
