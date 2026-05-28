@@ -89,28 +89,23 @@ jobs:
           cp "$APK" ./yaya.apk
           ls -la yaya.apk
 
-      - name: Delete old release
-        run: |
-          gh release delete v1.0.0 --yes --cleanup-tag 2>/dev/null || echo "no old release"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: v1.0.0
-          release_name: Yaya App v2.0.2
+          artifacts: yaya.apk
+          tag: v1.0.0
+          name: Yaya App v2.0.3
           body: |
-            ## 雅雅 (Yaya) App v2.0.2
+            ## 雅雅 (Yaya) App v2.0.3
 
             ### 更新内容
-            - 📡 情报文章App内嵌iframe打开，保留底部导航栏
-            - 🔙 文章页顶部返回按钮 + 来源信息
-            - 🔗 浏览器兜底按钮（防止网站禁止iframe嵌入）
+            - 📡 文章用Readability提取正文，App原生样式渲染
+            - 🎨 去源站样式，保持App字体和排版
+            - 🔗 浏览器兜底按钮
 
             ### 安装
             直接下载 APK 文件到手机安装即可。
-          files: yaya.apk
-          draft: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
+          removeArtifacts: true
+          replacesArtifacts: true
+          token: ${{ secrets.GITHUB_TOKEN }}
