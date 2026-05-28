@@ -5,7 +5,7 @@ import IntelPage from './pages/IntelPage'
 import ArticlePage from './pages/ArticlePage'
 import SettingsPage from './pages/SettingsPage'
 
-const APP_VERSION = '2.0.1'
+const APP_VERSION = '2.0.2'
 const UPDATE_URL = 'http://121.196.229.11/yaya/version.json'
 const APK_URL = 'http://121.196.229.11/yaya/yaya.apk'
 
