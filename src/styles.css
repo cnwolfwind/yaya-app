@@ -281,6 +281,59 @@ html, body, #root {
   100% { width: 0; margin-left: 100%; }
 }
 
+/* 文章正文内容（Readability 提取） */
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+.article-content p {
+  margin: 0 0 14px 0;
+}
+.article-content h1, .article-content h2, .article-content h3 {
+  margin: 20px 0 10px 0;
+  color: var(--cocoa);
+  font-weight: 700;
+}
+.article-content h1 { font-size: 19px; }
+.article-content h2 { font-size: 17px; }
+.article-content h3 { font-size: 15px; }
+.article-content blockquote {
+  border-left: 3px solid var(--tea);
+  padding-left: 14px;
+  margin: 12px 0;
+  color: var(--text-light);
+  font-style: italic;
+}
+.article-content a {
+  color: var(--tea);
+  word-break: break-all;
+}
+.article-content pre, .article-content code {
+  background: var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 13px;
+  overflow-x: auto;
+}
+.article-content ul, .article-content ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+.article-content li {
+  margin-bottom: 6px;
+}
+.article-content figure {
+  margin: 12px 0;
+  text-align: center;
+}
+.article-content figcaption {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
 /* ===== Tool Pages (JK / Intel) ===== */
 .form-card {
   background: var(--card);
