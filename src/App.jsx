@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import HomePage from './pages/HomePage'
 import JKPage from './pages/JKPage'
 import IntelPage from './pages/IntelPage'
+import ArticlePage from './pages/ArticlePage'
 import SettingsPage from './pages/SettingsPage'
 
 const APP_VERSION = '2.0.1'
@@ -13,14 +14,17 @@ export default function App() {
   const [prevPage, setPrevPage] = useState('home')
   const [updateInfo, setUpdateInfo] = useState(null)
   const [toast, setToast] = useState(null)
+  const [articleData, setArticleData] = useState(null)
 
   const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2000) }
 
-  // 持久底部导航：所有页面共享一套 nav，导航时不传 onBack
-  const navigate = useCallback((p) => {
-    if (p === page) return
+  // 持久底部导航：所有页面共享一套 nav
+  // p: 目标页面, data: 可选参数（如 article 页面的 url/title/source）
+  const navigate = useCallback((p, data) => {
+    if (p === page && !data) return
     setPrevPage(page)
     setPage(p)
+    if (data) setArticleData(data)
   }, [page])
 
   // 滑动返回上一页
@@ -73,6 +77,14 @@ export default function App() {
       {page === 'home' && <HomePage onNavigate={navigate} />}
       {page === 'jk' && <JKPage onNavigate={navigate} />}
       {page === 'intel' && <IntelPage onNavigate={navigate} />}
+      {page === 'article' && articleData && (
+        <ArticlePage
+          url={articleData.url}
+          title={articleData.title}
+          source={articleData.source}
+          onBack={() => setPage(prevPage)}
+        />
+      )}
       {page === 'settings' && <SettingsPage onNavigate={navigate} />}
 
       {/* 持久底部导航栏 */}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Browser } from '@capacitor/browser'
 
 const FILTERS = [
   { label: '全部', value: 'all' },
@@ -107,14 +106,10 @@ export default function IntelPage({ onNavigate }) {
     }
   }, [loadMore])
 
-  // in-app 打开链接
-  const openLink = async (url) => {
+  // App 内嵌页面打开文章
+  const openLink = (url, title, source) => {
     if (!url || url === '#') return
-    try {
-      await Browser.open({ url })
-    } catch {
-      window.open(url, '_blank')
-    }
+    onNavigate('article', { url, title, source })
   }
 
   // 按日期分组
@@ -201,7 +196,7 @@ export default function IntelPage({ onNavigate }) {
                     return (
                       <div key={item.id || idx}
                         className="intel-card"
-                        onClick={() => item.link && item.link !== '#' ? openLink(item.link) : null}
+                        onClick={() => item.link && item.link !== '#' ? openLink(item.link, item.title, item.source) : null}
                         style={{ cursor: item.link && item.link !== '#' ? 'pointer' : 'default' }}
                       >
                         <span className="intel-tag" style={{ background: colors.bg, color: colors.color }}>

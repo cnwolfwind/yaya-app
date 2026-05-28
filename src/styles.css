@@ -274,6 +274,13 @@ html, body, #root {
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
+@keyframes articleLoading {
+  0% { width: 0; margin-left: 0; }
+  40% { width: 60%; margin-left: 0; }
+  60% { width: 40%; margin-left: 60%; }
+  100% { width: 0; margin-left: 100%; }
+}
+
 /* ===== Tool Pages (JK / Intel) ===== */
 .form-card {
   background: var(--card);
