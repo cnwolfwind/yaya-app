@@ -82,24 +82,35 @@ jobs:
         with:
           name: yaya-apk
 
+      - name: Move APK to root
+        run: |
+          APK=$(find . -name "app-debug.apk" -type f | head -1)
+          echo "Found: $APK"
+          cp "$APK" ./yaya.apk
+          ls -la yaya.apk
+
+      - name: Delete old release
+        run: |
+          gh release delete v1.0.0 --yes --cleanup-tag 2>/dev/null || echo "no old release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.0
-          release_name: Yaya App v1.0.0
+          release_name: Yaya App v2.0.2
           body: |
-            ## 雅雅 (Yaya) App v2.0.1
+            ## 雅雅 (Yaya) App v2.0.2
 
-            个人AI工具箱 - 鸭鸭 VI 主题
-
-            ### 功能
-            - 🎲 JK概率 - 概率投票决策工具
-            - 📡 情报雷达 - 每日科技/商业情报
-            - ⚙️ 设置 - 版本/更新/清除缓存
+            ### 更新内容
+            - 📡 情报文章App内嵌iframe打开，保留底部导航栏
+            - 🔙 文章页顶部返回按钮 + 来源信息
+            - 🔗 浏览器兜底按钮（防止网站禁止iframe嵌入）
 
             ### 安装
             直接下载 APK 文件到手机安装即可。
-          files: yaya-apk/app-debug.apk
+          files: yaya.apk
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
